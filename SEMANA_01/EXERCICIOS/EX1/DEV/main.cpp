@@ -84,7 +84,6 @@ void MaiorN(int *vetor, int maiorDirecao)
 	string posicoes[4] = {"Right", "Left", "Front", "Back"};
 	string maiorPosicao;
 	int maior = *vetor;
-	printf("%d", maior);
 	for (int i = 0; i < 4; i++)
 	{
 		if (vetor[i] > maiorDirecao)
