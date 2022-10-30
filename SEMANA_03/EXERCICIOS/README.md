@@ -14,5 +14,5 @@ C - Faça uma versão simulada no Wowki
 
 
 # Card "infraestrutura e ferramentas I"
-![alt text](/infraestrutura_e_ferramentas/DEV%20C%2B%2B%20e%20Arduino.png)
-![alt text](/infraestrutura_e_ferramentas/Wokwi.png)
+![alt text](https://github.com/ThomeGiovana/modulo_4/tree/main/SEMANA_03/EXERCICIOS/infraestrutura_e_ferramentas/DEV%20C%2B%2B%20e%20Arduino.png)
+![alt text](https://github.com/ThomeGiovana/modulo_4/tree/main/SEMANA_03/EXERCICIOS/infraestrutura_e_ferramentas/Wokwi.png)
