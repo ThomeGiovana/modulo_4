@@ -14,5 +14,8 @@ C - Faça uma versão simulada no Wowki
 
 
 # Card "infraestrutura e ferramentas I"
+Desktop com DEV C++ e Arduino:
 ![Desktop com DEV C++ e Arduino](https://github.com/ThomeGiovana/modulo_4/blob/main/SEMANA_03/EXERCICIOS/infraestrutura_e_ferramentas/DEV%20C%2B%2B%20e%20Arduino.png)
+
+Conta da Wokwi criada com e-mail da instiruição:
 ![Conta Wokwi](https://github.com/ThomeGiovana/modulo_4/blob/main/SEMANA_03/EXERCICIOS/infraestrutura_e_ferramentas/Wokwi.png)
