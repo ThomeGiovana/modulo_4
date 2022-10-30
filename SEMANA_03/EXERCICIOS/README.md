@@ -11,3 +11,8 @@ Além disso:
 A - Utilize a interface IDE 2.0 do Arduino para construcao do codigo
 B - Monte o respectivo projeto e faça o funcionar.
 C - Faça uma versão simulada no Wowki
+
+
+# Card "infraestrutura e ferramentas I"
+![alt text](/infraestrutura_e_ferramentas/DEV%20C%2B%2B%20e%20Arduino.png)
+![alt text](/infraestrutura_e_ferramentas/Wokwi.png)
