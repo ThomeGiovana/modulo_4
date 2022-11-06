@@ -19,3 +19,7 @@ Desktop com DEV C++ e Arduino:
 
 Conta da Wokwi criada com e-mail da instiruição:
 ![Conta Wokwi](https://github.com/ThomeGiovana/modulo_4/blob/main/SEMANA_03/EXERCICIOS/infraestrutura_e_ferramentas/Wokwi.png)
+
+# Card "Exercício - Programação de microcontroladores"
+Modelo físico do exercício: 
+![Modelo físico do exercício](https://github.com/ThomeGiovana/modulo_4/blob/main/SEMANA_03/EXERCICIOS\sketch_exercicio_programacao_de_microcontroladores\modelo_fisico.jpg)

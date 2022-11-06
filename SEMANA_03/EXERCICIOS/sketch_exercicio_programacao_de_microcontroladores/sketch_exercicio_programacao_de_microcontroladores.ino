@@ -1,96 +1,117 @@
-// portas
 #define ldrPin 11
-#define amareloPin 4
-#define vermelhoPin 6
-#define azulPin 15
-#define verdePin 17
+#define amareloPin 1
+#define vermelhoPin 2
+#define azulPin 3
+#define verdePin 4
 #define pinBuzzer 8
+#define buttonArmazena 7
+#define buttonReproduz 18
 
 #include <vector>
+#include <iostream>
+#include <string>
+
+int melodia[100];
+int cont = 0;
 
 void setup() {
   Serial.begin(115200);
-  // put your setup code here, to run once:
   pinMode(ldrPin, INPUT);
   pinMode(amareloPin, OUTPUT);
   pinMode(vermelhoPin, OUTPUT);
   pinMode(azulPin, OUTPUT);
   pinMode(verdePin, OUTPUT);
   pinMode(pinBuzzer, OUTPUT);
-
+  pinMode(buttonArmazena, INPUT);
+  pinMode(buttonReproduz, INPUT);
 }
 
 void loop() {
 
   int ldrRead = analogRead(ldrPin);
   delay(500);
-
   // valor máximo do LDR lido em testes: ~3000 - escala com 15 intervalos de 200
-  // definição de intervalo de 0 a 15
   int ldrReadRescaled = (ldrRead*15)/3000;
   if (ldrReadRescaled > 15){
     ldrReadRescaled = 15;
   }
+
+  BuzzerPlay(ldrReadRescaled); // toca uma nota diferente a cada leitura
   Serial.println(ldrReadRescaled);
-
-  // toca uma nota diferente a cada leitura
-  BuzzerPlay(ldrReadRescaled);
-
-  // conversão da ldrReadRescaled para binário
-  int bin[4];
-  int converted = ldrReadRescaled;
-  if(8<=converted){
-    converted = converted-8;
-    bin[0] = 1;
-  } else {
-    bin[0] = 0;
-  }
-  if(4<=converted){
-    converted = converted-4;
-    bin[1] = 1;
-  } else {
-    bin[1] = 0;
-  }
-  if(2<=converted){
-    converted = converted-2;
-    bin[2] = 1;
-  } else {
-    bin[2] = 0;
-  }
-  if(1==converted){
-    converted = converted-1;
-    bin[3] = 1;
-  } else {
-    bin[3] = 0;
-  }
+  String strBin = converteBinario(ldrReadRescaled);
 
   // ligar os LEDs de acordo com o binário
-  if (bin[0] == 1){
-    digitalWrite(amareloPin, HIGH);
-  } else {
-    digitalWrite(amareloPin, LOW);
+  int i;
+  for (i = 0; i < 4; i++){
+    if(strBin[i] == '1'){
+      digitalWrite(i+1, HIGH);
+    } else {
+      digitalWrite(i+1, LOW);
+    }
   }
 
-  if (bin[1] == 1){
-    digitalWrite(vermelhoPin, HIGH);
-  } else {
-    digitalWrite(vermelhoPin, LOW);
+  //armazena o número atual em um vetor
+  int buttonArmazenaState = digitalRead(buttonArmazena);
+  if(buttonArmazenaState == 1){
+    armazena(ldrReadRescaled);
+    Serial.println("Armazenado!");
   }
 
-  if (bin[2] == 1){
-    digitalWrite(azulPin, HIGH);
-  } else {
-    digitalWrite(azulPin, LOW);
+  //reproduz o vetor
+  int buttonReproduzState = digitalRead(buttonReproduz);
+  if(buttonReproduzState == 1){
+  Serial.println("Reproduzindo");
+    int c;
+    for(c=0;c<cont;c++){
+      //ligar leds
+      String strBin = converteBinario(melodia[c]);
+      Serial.println(strBin);
+      Serial.println(melodia[c]);
+      int i;
+      for (i = 0; i < 4; i++){
+        if(strBin[i] == '1'){
+          digitalWrite(i+1, HIGH);
+        } else {
+          digitalWrite(i+1, LOW);
+        }
+      }
+      BuzzerPlay(melodia[c]);
+      delay(3000);
+      melodia[c] = 0;
+    }
+    cont = 0;
   }
 
-  if (bin[3] == 1){
-    digitalWrite(verdePin, HIGH);
-  } else {
-    digitalWrite(verdePin, LOW);
-  }
+  //----------------------------------------------------------
 
 }
 
 void BuzzerPlay(int n){
   tone(pinBuzzer, n*50);
+}
+
+String converteBinario(int ldrReadRescaled){
+  // conversão da ldrReadRescaled para binário
+  int bin[4];
+  int pos = 0;      // posição no vetor
+  int valorBin = 8; // 8, 4, 2, 1
+  int converted = ldrReadRescaled;
+
+  while (valorBin >= 1){
+    if (valorBin <= converted){
+      converted = converted - valorBin;
+      bin[pos] = 1;
+    } else {
+      bin[pos] = 0;
+    }
+    valorBin = valorBin / 2;
+    pos++;
+  }
+  String binario = String(bin[0]) + String(bin[1]) + String(bin[2]) + String(bin[3]);
+  return binario;
+}
+
+void armazena(int ldrRescaled){
+  melodia[cont] = ldrRescaled;
+  cont++;
 }
