@@ -1,0 +1,21 @@
+// https://www.youtube.com/watch?v=cgoCmYLeaSI&list=PL-3SnJmahyb5mQLq7RgG6HNIUMwXzgDy-&index=8
+
+Conectando à rede WiFi......
+Conexão WiFi estabelecida!
+Endereço IP: 10.128.65.214
+
+Statuscode: 200
+[
+  {
+    "postId": 1,
+    "id": 4,
+    "name": "alias odio sit",
+    "email": "Lew@alysha.tv",
+    "body": "non et atque\noccaecati deserunt quas accusantium unde odit nobis qui voluptatem\nquia voluptas consequuntur itaque dolor\net qui rerum deleniti ut occaecati"
+  }
+]
+
+json: 
+{"postId":1,"id":4,"name":"aliasodiosit","email":"Lew@alysha.tv","body":"nonetatque\noccaecatideseruntquasaccusantiumundeoditnobisquivoluptatem\nquiavoluptasconsequunturitaquedolor\netquirerumdelenitiutoccaecati"}]
+4 - Lew@alysha.tv
+
