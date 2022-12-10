@@ -1,13 +1,13 @@
 #include <WiFi.h>
-#define ledP1vermelho 36
-#define ledP1verde 2
-#define ledP2vermelho 8
-#define ledP2verde 9
+#define ledP1vermelho 3
+#define ledP1verde 15
+#define ledP2vermelho 40
+#define ledP2verde 0
 
-// const char* ssid = "SHARE-RESIDENTE";
-// const char* password = "Share@residente";
-const char *ssid = "Inteli-COLLEGE";
-const char *password = "QazWsx@123";
+const char* ssid = "SHARE-RESIDENTE";
+const char* password = "Share@residente";
+// const char *ssid = "Inteli-COLLEGE";
+// const char *password = "QazWsx@123";
 // const char* ssid = "Giovana's Iphone";
 // const char* password = "thome123";
 
@@ -96,20 +96,24 @@ void Empate(){
   digitalWrite(ledP2vermelho, LOW);
 }
 
-void RespostaPlaquinha(){
-  switch (vencedor){
+void RespostaPlaquinha(int quem_venceu){
+  switch (quem_venceu){
     case 0:{
       Empate();
+      break;
     }
     case 1:{
       P1wins();
       Serial.println("1 venceu");
+      break;
     }
     case 2:{
       P2wins();
       Serial.println("2 venceu");
+      break;
     }
   }
+  
 }
 
 int PedraPapelTesoura(int p1, int p2){
@@ -222,7 +226,7 @@ void loop()
               p2 = 0;
               int vencedor = PedraPapelTesoura(p1, p2);
               client.println(resposta);
-              RespostaPlaquinha();
+              RespostaPlaquinha(vencedor);
             }
             else if (header.indexOf("GET /player2/papel/") >= 0)
             {
@@ -230,7 +234,7 @@ void loop()
               p2 = 1;
               int vencedor = PedraPapelTesoura(p1, p2);
               client.println(resposta);
-              RespostaPlaquinha();
+              RespostaPlaquinha(vencedor);
             }
             else if (header.indexOf("GET /player2/tesoura/") >= 0)
             {
@@ -238,7 +242,7 @@ void loop()
               p2 = 2;
               int vencedor = PedraPapelTesoura(p1, p2);
               client.println(resposta);
-              RespostaPlaquinha();
+              RespostaPlaquinha(vencedor);
             }
 
             // final da página 
